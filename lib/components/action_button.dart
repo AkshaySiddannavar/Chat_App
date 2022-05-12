@@ -5,9 +5,11 @@ class ActionButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback? onTap;
   const ActionButton(
-      {this.buttonColor = Colors.lightBlueAccent,
+      {Key? key,
+      this.buttonColor = Colors.lightBlueAccent,
       this.buttonText = 'No Text',
-      this.onTap});
+      this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -8,6 +8,8 @@ late User loggedInUser;
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
+
+  const ChatScreen({Key? key}) : super(key: key);
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -54,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            MessagesStream(),
+            const MessagesStream(),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -94,6 +96,8 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class MessagesStream extends StatelessWidget {
+  const MessagesStream({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -157,11 +161,13 @@ class MessageBubble extends StatelessWidget {
   final String text;
   final bool isMe;
   final Timestamp time;
-  MessageBubble(
-      {this.sender = '',
+  const MessageBubble(
+      {Key? key,
+      this.sender = '',
       this.text = '',
       this.isMe = false,
-      required this.time});
+      required this.time})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

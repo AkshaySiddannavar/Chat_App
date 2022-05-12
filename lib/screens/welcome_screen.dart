@@ -7,6 +7,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
 
+  const WelcomeScreen({Key? key}) : super(key: key);
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
