@@ -80,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     showSpinner = true;
                   });
                   try {
+                    // ignore: unused_local_variable
                     final currentUser = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
 
