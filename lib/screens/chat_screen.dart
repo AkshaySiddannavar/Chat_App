@@ -75,6 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       _firestore.collection('messages').add({
                         'text': messageText,
                         'sender': loggedInUser.email,
+                        'time': FieldValue.serverTimestamp()
                       });
                     },
                     child: const Text(
@@ -96,7 +97,10 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-      stream: _firestore.collection('messages').snapshots(),
+      stream: _firestore
+          .collection('messages')
+          .orderBy('time', descending: false)
+          .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
@@ -110,6 +114,11 @@ class MessagesStream extends StatelessWidget {
           for (var message in messages) {
             final messageText = message.get('text');
             final messageSender = message.get('sender');
+            final currentTime = Timestamp.fromMicrosecondsSinceEpoch(
+                DateTime.now().millisecondsSinceEpoch);
+            final messageTime = message.get('time') == null
+                ? currentTime
+                : message.get('time') as Timestamp;
             final currentUser = loggedInUser.email;
             late final MessageBubble messageBubble;
             if (currentUser == messageSender) {
@@ -117,12 +126,14 @@ class MessagesStream extends StatelessWidget {
                 sender: messageSender,
                 text: messageText,
                 isMe: true,
+                time: messageTime,
               );
             } else {
               messageBubble = MessageBubble(
                 sender: messageSender,
                 text: messageText,
                 isMe: false,
+                time: messageTime,
               );
             }
             messageBubbles.add(messageBubble);
@@ -145,7 +156,12 @@ class MessageBubble extends StatelessWidget {
   final String sender;
   final String text;
   final bool isMe;
-  const MessageBubble({this.sender = '', this.text = '', this.isMe = false});
+  final Timestamp time;
+  MessageBubble(
+      {this.sender = '',
+      this.text = '',
+      this.isMe = false,
+      required this.time});
 
   @override
   Widget build(BuildContext context) {
