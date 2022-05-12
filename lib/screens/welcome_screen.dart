@@ -73,9 +73,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             TypewriterAnimatedText('Flash Chat',
                                 speed: const Duration(milliseconds: 50)),
                           ],
-                          onTap: () {
-                            print("Tap Event");
-                          },
                         ),
                       ),
                     ),
