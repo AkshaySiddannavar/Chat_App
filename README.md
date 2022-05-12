@@ -37,7 +37,6 @@ You can :
   Get help at :
 1. [Flutter Documentation](https://docs.flutter.dev/)
 2. [Dart Documentation](https://dart.dev/guides)
-3. [Provider Documentation](https://pub.dev/packages/provider)
 
 - Who maintains and contributes to the project  
   
