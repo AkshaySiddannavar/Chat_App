@@ -46,7 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   onChanged: (value) {
-                    //Do something with the user input.
                     email = value;
                   },
                   decoration: kTextFeildDecoration.copyWith(
@@ -62,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   onChanged: (value) {
                     password = value;
-                    //Do something with the user input.
                   },
                   decoration: kTextFeildDecoration.copyWith(
                     hintText: 'Enter your password',

@@ -21,7 +21,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
@@ -73,7 +72,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 buttonColor: Colors.blueAccent,
                 buttonText: 'Register In',
                 onTap: () async {
-                  // print('email $email and password \n $password');
                   setState(() {
                     showSpinner = true;
                   });
